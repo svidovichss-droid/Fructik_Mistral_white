@@ -391,6 +391,7 @@ function fruitChatApp() {
 10. Объяснять математические понятия как в учебниках
 11. Не давать ответы напрямую, а подталкивать к решению
 12. Соблюдать законодательство РФ
+13. Если в сообщении ребёнка есть грамматическая ошибка то обращать на неё внимание и объяснять как писать правильно
 
 Твой характер: добрый, умный, терпеливый, с чувством юмора.`
                 },
@@ -533,14 +534,32 @@ function fruitChatApp() {
         },
         
         updateCharCount() {
-            this.charCount = this.messageInput.length;
-            
-            const textarea = document.getElementById('messageInput');
-            if (textarea) {
-                textarea.style.height = 'auto';
-                textarea.style.height = Math.min(textarea.scrollHeight, 192) + 'px';
-            }
-        },
+    this.charCount = this.messageInput.length;
+    
+    const textarea = document.getElementById('messageInput');
+    if (textarea) {
+        textarea.style.height = 'auto';
+        
+        // Рассчитываем высоту с учётом отступов
+        const computedStyle = window.getComputedStyle(textarea);
+        const minHeight = parseInt(computedStyle.minHeight, 10) || 64;
+        const maxHeight = parseInt(computedStyle.maxHeight, 10) || 192;
+        const lineHeight = parseInt(computedStyle.lineHeight, 10) || 24;
+        
+        // Вычисляем высоту на основе количества строк
+        const rows = textarea.value.split('\n').length;
+        const calculatedHeight = Math.max(minHeight, Math.min(maxHeight, rows * lineHeight + 32));
+        
+        textarea.style.height = calculatedHeight + 'px';
+        
+        // Адаптируем высоту кнопки отправки
+        const sendButton = document.getElementById('sendButton');
+        if (sendButton) {
+            sendButton.style.height = calculatedHeight + 'px';
+            sendButton.style.minHeight = calculatedHeight + 'px';
+        }
+    }
+},
         
         handleEnter(event) {
             if (event.shiftKey) {

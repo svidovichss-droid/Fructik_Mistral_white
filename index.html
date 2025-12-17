@@ -200,52 +200,52 @@
 </div>
         
         <!-- Input Area -->
-        <footer class="input-container glass" style="border-top: 1px solid rgba(0,0,0,0.05);">
-            <div class="input-wrapper">
-                <div class="input-group">
-                    <div class="input-field">
-                        <textarea 
-                            x-model="messageInput"
-                            @input="updateCharCount()"
-                            @keydown.enter.prevent="handleEnter($event)"
-                            :disabled="isSending"
-                            placeholder="Напишите сообщение Фруктику..."
-                            class="textarea"
-                            id="messageInput"
-                            rows="1"></textarea>
-                        <div class="char-counter" :class="charCounterClass" id="charCounter">
-                            <span x-text="charCount"></span>/1000
-                        </div>
-                    </div>
-                    <button 
-                        @click="sendMessage()"
-                        :disabled="!messageInput.trim() || isSending"
-                        class="btn-primary"
-                        id="sendButton">
-                        <i class="fas" :class="isSending ? 'fa-spinner fa-spin' : 'fa-paper-plane'"></i>
-                    </button>
-                </div>
-                
-                <div class="quick-actions">
-                    <button @click="setQuickQuestion('Помоги решить задачу')" class="quick-action-btn">
-                        <i class="fas fa-lightbulb"></i>
-                        <span>Решить задачу</span>
-                    </button>
-                    <button @click="setQuickQuestion('Объясни правило русского языка')" class="quick-action-btn">
-                        <i class="fas fa-language"></i>
-                        <span>Русский язык</span>
-                    </button>
-                    <button @click="setQuickQuestion('Подготовь меня к контрольной')" class="quick-action-btn">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>Подготовка</span>
-                    </button>
-                    <button @click="showRandomFact()" class="quick-action-btn btn-fun-fact">
-                        <i class="fas fa-star"></i>
-                        <span>Случайный факт</span>
-                    </button>
+<footer class="input-container glass" style="border-top: 1px solid rgba(0,0,0,0.05);">
+    <div class="input-wrapper">
+        <div class="input-group">
+            <div class="input-field">
+                <textarea 
+                    x-model="messageInput"
+                    @input="updateCharCount()"
+                    @keydown.enter.prevent="handleEnter($event)"
+                    :disabled="isSending"
+                    placeholder="Напишите сообщение Фруктику..."
+                    class="textarea"
+                    id="messageInput"
+                    rows="1"></textarea>
+                <div class="char-counter" :class="charCounterClass" id="charCounter">
+                    <span x-text="charCount"></span>/1000
                 </div>
             </div>
-        </footer>
+            <button 
+                @click="sendMessage()"
+                :disabled="!messageInput.trim() || isSending"
+                class="btn-send"
+                id="sendButton">
+                <i class="fas" :class="isSending ? 'fa-spinner fa-spin' : 'fa-paper-plane'"></i>
+            </button>
+        </div>
+        
+        <div class="quick-actions">
+            <button @click="setQuickQuestion('Помоги решить задачу')" class="quick-action-btn">
+                <i class="fas fa-lightbulb"></i>
+                <span>Решить задачу</span>
+            </button>
+            <button @click="setQuickQuestion('Объясни правило русского языка')" class="quick-action-btn">
+                <i class="fas fa-language"></i>
+                <span>Русский язык</span>
+            </button>
+            <button @click="setQuickQuestion('Подготовь меня к контрольной')" class="quick-action-btn">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Подготовка</span>
+            </button>
+            <button @click="showRandomFact()" class="quick-action-btn btn-fun-fact">
+                <i class="fas fa-star"></i>
+                <span>Случайный факт</span>
+            </button>
+        </div>
+    </div>
+</footer>
     </div>
     
     <!-- Welcome Modal -->
